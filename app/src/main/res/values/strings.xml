@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">MicroLearn</string>
+    <string name="portions">Daily portions</string>
+    <string name="portion">Portion</string>
+    <string name="portionName"><u>Portion Name</u></string>
+    <string name="portionText">Portion Text</string>
+    <string name="new_theme">New Theme</string>
+    <string name="theme_area">Area</string>
+    <string name="theme_name">Provided topic</string>
+    <string name="theme_own">Your topic</string>
+    <string name="theme_choose_label">Choose the topic or write the another one that you are interested in and we will see if we can provide it.</string>
+    <string name="theme_time">Time of receiving a daily article</string>
+    <string name="account">Account</string>
 </resources>
