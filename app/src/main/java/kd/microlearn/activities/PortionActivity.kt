@@ -2,8 +2,11 @@ package kd.microlearn.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import kd.microlearn.R
 import kd.microlearn.databinding.ActivityPortionBinding
+import kd.microlearn.main.MainApp
 import kd.microlearn.models.PortionModel
 import timber.log.Timber
 import timber.log.Timber.i
@@ -11,15 +14,34 @@ import timber.log.Timber.i
 class PortionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPortionBinding
     var portion = PortionModel()
-
+    var app : MainApp? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_portion)
-        Timber.plant(Timber.DebugTree())
-        i("Portion Activity started..")
-
         binding = ActivityPortionBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.toolbarAdd.title = "Portion"
+        setSupportActionBar(binding.toolbarAdd)
+
+        app = application as MainApp
+        i("Portion Activity started...")
+        if (intent.hasExtra("portion_show")) {
+            portion = intent.extras?.getParcelable("portion_show")!!
+            binding.portionName.text = getString(R.string.show_underlined, portion.p_title)
+            binding.portionText.text = portion.p_text
+            binding.toolbarAdd.title = portion.p_theme
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_portion, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.item_cancel -> { finish() }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

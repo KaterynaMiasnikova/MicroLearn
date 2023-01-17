@@ -11,4 +11,6 @@
     <string name="theme_choose_label">Choose the topic or write the another one that you are interested in and we will see if we can provide it.</string>
     <string name="theme_time">Time of receiving a daily article</string>
     <string name="account">Account</string>
+    <string name="show_underlined"><u>%s</u></string>
+    <string name="back">Back</string>
 </resources>

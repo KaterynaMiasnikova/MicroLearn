@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:elevation="24dp"
+    android:outlineAmbientShadowColor="@color/minor_green"
+    android:outlineProvider="bounds">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:outlineAmbientShadowColor="@color/minor_green"
+        android:padding="10dp">
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="0dp" />
+
+        <TextView
+            android:id="@+id/portionTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:maxWidth="320dp"
+            android:textColor="@color/black"
+            android:textSize="28sp"
+            tools:text="A Title" />
+
+        <TextView
+            android:id="@+id/portion_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/portionTitle"
+            android:textColor="@color/black"
+            tools:text="A Description" />
+
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
