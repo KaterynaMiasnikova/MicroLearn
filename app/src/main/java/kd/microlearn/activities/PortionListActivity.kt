@@ -2,18 +2,21 @@ package kd.microlearn.activities
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuItem
+import android.view.View
+import android.widget.CheckBox
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kd.microlearn.R
 import kd.microlearn.adapters.PortionAdapter
 import kd.microlearn.adapters.PortionListener
 import kd.microlearn.databinding.ActivityPortionListBinding
 import kd.microlearn.main.MainApp
 import kd.microlearn.models.PortionModel
+
 
 class PortionListActivity : AppCompatActivity(), PortionListener {
     lateinit var app: MainApp
@@ -31,6 +34,13 @@ class PortionListActivity : AppCompatActivity(), PortionListener {
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = PortionAdapter(app.portions.findAll(), this)
+
+        val fab = findViewById<View>(R.id.addTheme) as FloatingActionButton
+        fab.setOnClickListener { view ->
+            val launcherIntent = Intent(this, ThemeActivity::class.java)
+            //launcherIntent.putExtra("theme_show", portion)
+            getClickResult.launch(launcherIntent)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

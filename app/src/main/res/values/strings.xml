@@ -5,6 +5,7 @@
     <string name="portionName"><u>Portion Name</u></string>
     <string name="portionText">Portion Text</string>
     <string name="new_theme">New Theme</string>
+    <string name="theme_topic">Topic</string>
     <string name="theme_area">Area</string>
     <string name="theme_name">Provided topic</string>
     <string name="theme_own">Your topic</string>
@@ -13,4 +14,6 @@
     <string name="account">Account</string>
     <string name="show_underlined"><u>%s</u></string>
     <string name="back">Back</string>
+    <string name="or">or</string>
+    <string name="theme_commit_new">Commit new theme</string>
 </resources>

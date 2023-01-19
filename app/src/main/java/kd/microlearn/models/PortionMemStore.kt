@@ -2,31 +2,31 @@ package kd.microlearn.models
 
 import timber.log.Timber.i
 
-var lastId = 0L
+var lastIdPortion: Long = 0L
 
-internal fun getId(): Long {
-    return lastId++
+internal fun getPortionId(): Long {
+    return lastIdPortion++
 }
 
 class PortionMemStore : PortionStore {
 
-    val portions = ArrayList<PortionModel>()
+    private val portions = ArrayList<PortionModel>()
 
     override fun findAll(): List<PortionModel> {
         return portions
     }
 
     override fun create(portion: PortionModel) {
-        portion.id = getId()
+        portion.id_portion = getPortionId()
         portions.add(portion)
         logAll()
     }
 
     override fun update(portion: PortionModel) {
-        val foundPlacemark: PortionModel? = portions.find { p -> p.id == portion.id }
+        val foundPlacemark: PortionModel? = portions.find { p -> p.id_portion == portion.id_portion }
         if (foundPlacemark != null) {
-            foundPlacemark.p_title = portion.p_title
-            foundPlacemark.p_text = portion.p_text
+            foundPlacemark.title_portion = portion.title_portion
+            foundPlacemark.text_portion = portion.text_portion
             logAll()
         }
     }

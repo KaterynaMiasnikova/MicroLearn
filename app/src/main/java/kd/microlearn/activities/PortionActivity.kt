@@ -8,7 +8,6 @@ import kd.microlearn.R
 import kd.microlearn.databinding.ActivityPortionBinding
 import kd.microlearn.main.MainApp
 import kd.microlearn.models.PortionModel
-import timber.log.Timber
 import timber.log.Timber.i
 
 class PortionActivity : AppCompatActivity() {
@@ -27,9 +26,9 @@ class PortionActivity : AppCompatActivity() {
         i("Portion Activity started...")
         if (intent.hasExtra("portion_show")) {
             portion = intent.extras?.getParcelable("portion_show")!!
-            binding.portionName.text = getString(R.string.show_underlined, portion.p_title)
-            binding.portionText.text = portion.p_text
-            binding.toolbarAdd.title = portion.p_theme
+            binding.portionName.text = getString(R.string.show_underlined, portion.title_portion)
+            binding.portionText.text = portion.text_portion
+            binding.toolbarAdd.title = app!!.themes.getById(portion.id_theme).title_theme
         }
     }
 

@@ -4,4 +4,4 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class PortionModel(var id: Long = 0, var p_title: String = "", var p_text: String = "", var p_theme: String = "") : Parcelable
+data class PortionModel(var id_portion: Long = 0, var title_portion: String = "", var text_portion: String = "", var id_theme: Long = 0) : Parcelable

@@ -28,4 +28,14 @@
         android:scrollbars="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        android:clickable="true"
+        app:srcCompat="@android:drawable/ic_menu_add"
+        android:contentDescription="ADD" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
