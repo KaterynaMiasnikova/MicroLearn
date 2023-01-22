@@ -16,7 +16,6 @@ import kd.microlearn.main.MainApp
 import kd.microlearn.models.ThemeModel
 import timber.log.Timber
 
-
 class ThemeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
     private lateinit var binding: ActivityThemeBinding
     var theme = ThemeModel()
@@ -79,12 +78,12 @@ class ThemeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
             } else if (parent.id == R.id.themeSpinner) {
                 theme = app?.themes?.findThemeByName(parent.getItemAtPosition(position) as String)!!
                 Timber.i(theme.toString())
-                Toast.makeText(applicationContext, ""+ parent.getItemAtPosition(position), Toast.LENGTH_LONG).show();
+                Toast.makeText(applicationContext, ""+ parent.getItemAtPosition(position), Toast.LENGTH_LONG).show()
             }
         }
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
-        Toast.makeText(applicationContext, "BAAAAAAAAAAAD", Toast.LENGTH_LONG).show();
+        Toast.makeText(applicationContext, "BAAAAAAAAAAAD", Toast.LENGTH_LONG).show()
     }
 }

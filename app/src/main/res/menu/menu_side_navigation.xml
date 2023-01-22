@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/favourite_facts"
+            android:icon="@drawable/cognition_black"
+            android:title="@string/favourite_facts" />
+
+        <item
+            android:id="@+id/studied_topics"
+            android:icon="@drawable/topic_black"
+            android:title="@string/studied_topics" />
+
+        <item
+            android:id="@+id/themes"
+            android:icon="@drawable/roller_black"
+            android:title="@string/themes" />
+
+        <item
+            android:id="@+id/settings"
+            android:icon="@drawable/settings_black"
+            android:title="@string/settings" />
+
+        <item
+            android:id="@+id/portion_archive"
+            android:icon="@drawable/archive_black"
+            android:title="@string/portion_archive" />
+    </group>
+
+    <item android:title="@string/other">
+        <menu>
+            <item
+                android:id="@+id/support"
+                android:icon="@drawable/help_black"
+                android:title="@string/support" />
+        </menu>
+    </item>
+
+</menu>

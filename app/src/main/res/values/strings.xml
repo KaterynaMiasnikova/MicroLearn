@@ -16,4 +16,14 @@
     <string name="back">Back</string>
     <string name="or">or</string>
     <string name="theme_commit_new">Commit new theme</string>
+    <string name="favourite_facts">Favourite facts</string>
+    <string name="studied_topics">Studied topics</string>
+    <string name="themes">Themes</string>
+    <string name="settings">Settings</string>
+    <string name="portion_archive">Portion Archive</string>
+    <string name="support">Support</string>
+    <string name="add">ADD</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="other">Other</string>
 </resources>
