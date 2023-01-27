@@ -5,9 +5,14 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/favourite_facts"
-            android:icon="@drawable/cognition_black"
-            android:title="@string/favourite_facts" />
+            android:id="@+id/portions"
+            android:icon="@drawable/article_black"
+            android:title="@string/portions" />
+
+        <item
+            android:id="@+id/user"
+            android:icon="@drawable/account_black"
+            android:title="@string/my_account" />
 
         <item
             android:id="@+id/studied_topics"
@@ -15,19 +20,9 @@
             android:title="@string/studied_topics" />
 
         <item
-            android:id="@+id/themes"
-            android:icon="@drawable/roller_black"
-            android:title="@string/themes" />
-
-        <item
             android:id="@+id/settings"
             android:icon="@drawable/settings_black"
             android:title="@string/settings" />
-
-        <item
-            android:id="@+id/portion_archive"
-            android:icon="@drawable/archive_black"
-            android:title="@string/portion_archive" />
     </group>
 
     <item android:title="@string/other">
@@ -36,6 +31,11 @@
                 android:id="@+id/support"
                 android:icon="@drawable/help_black"
                 android:title="@string/support" />
+
+            <item
+                android:id="@+id/login_out"
+                android:icon="@drawable/login"
+                android:title="@string/log_in" />
         </menu>
     </item>
 

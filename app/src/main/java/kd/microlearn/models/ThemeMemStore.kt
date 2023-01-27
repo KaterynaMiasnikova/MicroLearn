@@ -15,8 +15,18 @@ class ThemeMemStore : ThemeStore {
         return themes
     }
 
+    override fun findAllBut(themeMemStore: ThemeMemStore): ThemeMemStore {
+        val list = ThemeMemStore()
+        for (theme in themes) {
+            if (!themeMemStore.isThemeId(theme)) {
+                list.create(theme)
+            }
+        }
+        return list
+    }
+
     override fun create(theme: ThemeModel) {
-        theme.id_theme = getThemeId()
+        //theme.id_theme = getThemeId()
         themes.add(theme)
         logAll()
     }
@@ -55,6 +65,15 @@ class ThemeMemStore : ThemeStore {
             }
         }
         return ThemeModel(-1)
+    }
+
+    override fun isThemeId(theme: ThemeModel): Boolean {
+        for (t in themes) {
+            if (theme.id_theme == t.id_theme) {
+                return true
+            }
+        }
+        return false
     }
 
     private fun logAll() {

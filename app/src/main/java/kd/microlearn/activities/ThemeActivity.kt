@@ -34,6 +34,8 @@ class ThemeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
 
         val fab = findViewById<View>(R.id.commitTheme) as FloatingActionButton
         fab.setOnClickListener {
+            app!!.usersThemes.create(theme)
+            setResult(RESULT_OK)
             finish()
         }
 
@@ -47,7 +49,8 @@ class ThemeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
         themeSpinner = findViewById(R.id.themeSpinner)
         themeSpinner.onItemSelectedListener = this
         val aa: ArrayAdapter<*> =
-            ArrayAdapter<Any?>(this, android.R.layout.simple_spinner_item, app!!.themes.getThemesNamesOfArea( app!!.areas.findAreaByName(areaSpinner.getItemAtPosition(0) as String).id_area))
+            ArrayAdapter<Any?>(this, android.R.layout.simple_spinner_item, app!!.themes.findAllBut(
+                app!!.usersThemes).getThemesNamesOfArea( app!!.areas.findAreaByName(areaSpinner.getItemAtPosition(0) as String).id_area))
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         themeSpinner.adapter = aa
     }
@@ -70,8 +73,8 @@ class ThemeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
             if (parent.id == R.id.areaSpinner) {
 
                 val aa: ArrayAdapter<*> =
-                    ArrayAdapter<Any?>(this, android.R.layout.simple_spinner_item, app!!.themes.getThemesNamesOfArea(
-                        app!!.areas.findAreaByName(parent.getItemAtPosition(position) as String).id_area))
+                    ArrayAdapter<Any?>(this, android.R.layout.simple_spinner_item, app!!.themes.findAllBut(
+                        app!!.usersThemes).getThemesNamesOfArea(app!!.areas.findAreaByName(parent.getItemAtPosition(position) as String).id_area))
                 aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 themeSpinner.adapter = aa
 

@@ -1,5 +1,6 @@
 package kd.microlearn.activities
 
+import android.R.attr.value
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kd.microlearn.R
@@ -37,7 +39,7 @@ class PortionListActivity : AppCompatActivity(), PortionListener {
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = PortionAdapter(app.portions.findAll(), this)
+        binding.recyclerView.adapter = PortionAdapter(app.portions.findAllOfTheme(app.usersThemes), this)
 
         mDrawerLayout = findViewById<View>(R.id.drawer_layout) as DrawerLayout
         mToggle = ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close)
@@ -45,12 +47,14 @@ class PortionListActivity : AppCompatActivity(), PortionListener {
         mDrawerLayout.addDrawerListener(mToggle)
         mToggle.syncState()
 
+        val appBarConfiguration = AppBarConfiguration(binding.navigationView.menu, binding.drawerLayout)
+
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val fab = findViewById<View>(R.id.addTheme) as FloatingActionButton
         fab.setOnClickListener { view ->
             val launcherIntent = Intent(this, ThemeActivity::class.java)
-            //launcherIntent.putExtra("theme_show", portion)
             getClickResult.launch(launcherIntent)
         }
     }
@@ -73,15 +77,15 @@ class PortionListActivity : AppCompatActivity(), PortionListener {
         getClickResult.launch(launcherIntent)
     }
 
-    /*private val getResult =
+    private val getResult =
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
                 (binding.recyclerView.adapter)?.
-                notifyItemRangeChanged(0, app.portions.findAll().size)
+                notifyItemRangeChanged(0, app.portions.findAllOfTheme(app.usersThemes).size)
             }
-        }*/
+        }
 
     private val getClickResult =
         registerForActivityResult(
@@ -89,7 +93,7 @@ class PortionListActivity : AppCompatActivity(), PortionListener {
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
                 (binding.recyclerView.adapter)?.
-                notifyItemRangeChanged(0,app.portions.findAll().size)
+                notifyItemRangeChanged(0, app.portions.findAllOfTheme(app.usersThemes).size +1)
             }
         }
 }

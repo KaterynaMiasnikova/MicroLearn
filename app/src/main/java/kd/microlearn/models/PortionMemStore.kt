@@ -16,6 +16,28 @@ class PortionMemStore : PortionStore {
         return portions
     }
 
+    override fun findAllOfTheme(theme : ThemeModel): List<PortionModel> {
+        val list = ArrayList<PortionModel>()
+        for (portion in portions) {
+            if (portion.id_theme == theme.id_theme) {
+                list.add(portion)
+            }
+        }
+        return list
+    }
+
+    override fun findAllOfTheme(themes: ThemeMemStore): List<PortionModel> {
+        val list = ArrayList<PortionModel>()
+        for (theme in themes.findAll()) {
+            for (portion in portions) {
+                if (portion.id_theme == theme.id_theme) {
+                    list.add(portion)
+                }
+            }
+        }
+        return list
+    }
+
     override fun create(portion: PortionModel) {
         portion.id_portion = getPortionId()
         portions.add(portion)

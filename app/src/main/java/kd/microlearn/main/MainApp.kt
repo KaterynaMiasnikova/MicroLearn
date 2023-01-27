@@ -8,6 +8,7 @@ class MainApp  : Application() {
     val areas = AreaMemStore()
     val themes = ThemeMemStore()
     val portions = PortionMemStore()
+    val usersThemes = ThemeMemStore()
 
     override fun onCreate() {
         super.onCreate()
@@ -25,6 +26,9 @@ class MainApp  : Application() {
         themes.create(ThemeModel(4, "International cuisine", "",1))
         themes.create(ThemeModel(5, "Musical instruments", "",1))
         themes.create(ThemeModel(6, "Public transport", "",0))
+
+
+        usersThemes.create(themes.findThemeByName("Musical instruments"))
 
         portions.create(PortionModel(1,"Carpathian Mountains",
             "The Carpathian Mountains or Carpathians are a range of mountains forming an arc across Central Europe. Roughly 1,500 km long, it is the third-longest European mountain range after the Urals at 2,500 km and the Scandinavian Mountains at 1,700 km. The range stretches from the far eastern Czech Republic (3%) and Austria (1%) in the northwest through Slovakia (21%), Poland (10%), Ukraine (10%), Romania (50%) to Serbia (5%) in the south. The highest range within the Carpathians is known as the Tatra mountains in Slovakia and Poland, where the highest peaks exceed 2,600 m. The second-highest range is the Southern Carpathians in Romania, where the highest peaks range between 2,500 m and 2,550 m.",
