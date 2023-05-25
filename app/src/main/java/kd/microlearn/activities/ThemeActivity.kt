@@ -13,6 +13,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kd.microlearn.R
 import kd.microlearn.databinding.ActivityThemeBinding
 import kd.microlearn.main.MainApp
+import kd.microlearn.models.AppDatabase
 import kd.microlearn.models.ThemeModel
 import timber.log.Timber
 
@@ -21,6 +22,7 @@ class ThemeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
     var theme = ThemeModel()
     var app : MainApp? = null
     lateinit var themeSpinner: Spinner
+    val db = AppDatabase.getInstance(applicationContext)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,14 +42,14 @@ class ThemeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
         val areaSpinner: Spinner = findViewById(R.id.areaSpinner)
         areaSpinner.onItemSelectedListener = this
         val a: ArrayAdapter<*> =
-            ArrayAdapter<Any?>(this, android.R.layout.simple_spinner_item, app!!.db.areaDao().getAreasNames())
+            ArrayAdapter<Any?>(this, android.R.layout.simple_spinner_item, db!!.areaDao().getAreasNames())
         a.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         areaSpinner.adapter = a
 
         themeSpinner = findViewById(R.id.themeSpinner)
         themeSpinner.onItemSelectedListener = this
         val aa: ArrayAdapter<*> =
-            ArrayAdapter<Any?>(this, android.R.layout.simple_spinner_item, app!!.db.themeDao().getThemesNamesOfArea( app!!.db.areaDao().findAreaByName(areaSpinner.getItemAtPosition(0) as String).id_area))
+            ArrayAdapter<Any?>(this, android.R.layout.simple_spinner_item, db.themeDao().getThemesNamesOfArea( db.areaDao().findAreaByName(areaSpinner.getItemAtPosition(0) as String).id_area))
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         themeSpinner.adapter = aa
     }
@@ -70,13 +72,13 @@ class ThemeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
             if (parent.id == R.id.areaSpinner) {
 
                 val aa: ArrayAdapter<*> =
-                    ArrayAdapter<Any?>(this, android.R.layout.simple_spinner_item, app!!.db.themeDao().getThemesNamesOfArea(
-                        app!!.db.areaDao().findAreaByName(parent.getItemAtPosition(position) as String).id_area))
+                    ArrayAdapter<Any?>(this, android.R.layout.simple_spinner_item, db!!.themeDao().getThemesNamesOfArea(
+                        db.areaDao().findAreaByName(parent.getItemAtPosition(position) as String).id_area))
                 aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 themeSpinner.adapter = aa
 
             } else if (parent.id == R.id.themeSpinner) {
-                theme = app?.db?.themeDao()?.findThemeByName(parent.getItemAtPosition(position) as String)!!
+                theme = db?.themeDao()?.findThemeByName(parent.getItemAtPosition(position) as String)!!
                 Timber.i(theme.toString())
                 Toast.makeText(applicationContext, ""+ parent.getItemAtPosition(position), Toast.LENGTH_LONG).show()
             }

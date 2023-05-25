@@ -22,15 +22,18 @@ abstract class AppDatabase: RoomDatabase() {
     abstract fun learnsThemeDao(): LearnsThemeDao
     abstract fun studiedPortionDao(): StudiedPortionDao
 
+
     companion object {
         private var INSTANCE: AppDatabase? = null
 
         fun getInstance(context: Context): AppDatabase? {
             if (INSTANCE == null) {
                 synchronized(AppDatabase::class) {
-                    INSTANCE = Room.databaseBuilder(context.applicationContext,
-                        AppDatabase::class.java, "microlearn.db").allowMainThreadQueries()
-                        .build()
+                    INSTANCE = Room.databaseBuilder(
+                        context.applicationContext,
+                        AppDatabase::class.java, "microlearn.db"
+                    ).allowMainThreadQueries()
+                    .build()
                 }
             }
             return INSTANCE
@@ -40,4 +43,5 @@ abstract class AppDatabase: RoomDatabase() {
             INSTANCE = null
         }
     }
+
 }

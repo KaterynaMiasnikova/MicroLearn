@@ -16,7 +16,9 @@ import kd.microlearn.R
 import kd.microlearn.adapters.PortionAdapter
 import kd.microlearn.adapters.PortionListener
 import kd.microlearn.databinding.ActivityPortionListBinding
+import kd.microlearn.main.Database
 import kd.microlearn.main.MainApp
+import kd.microlearn.models.AppDatabase
 import kd.microlearn.models.PortionModel
 
 
@@ -25,6 +27,7 @@ class PortionListActivity : AppCompatActivity(), PortionListener {
     private lateinit var binding: ActivityPortionListBinding
     private lateinit var mDrawerLayout : DrawerLayout
     private lateinit var mToggle: ActionBarDrawerToggle
+    val db = AppDatabase.getInstance(applicationContext)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +40,7 @@ class PortionListActivity : AppCompatActivity(), PortionListener {
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = PortionAdapter(app.db.portionDao().findAll(), this)
+        binding.recyclerView.adapter = PortionAdapter(db!!.portionDao().findAll(), this)
 
         mDrawerLayout = findViewById<View>(R.id.drawer_layout) as DrawerLayout
         mToggle = ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close)
@@ -89,7 +92,7 @@ class PortionListActivity : AppCompatActivity(), PortionListener {
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
                 (binding.recyclerView.adapter)?.
-                notifyItemRangeChanged(0,app.db.portionDao().findAll().size)
+                notifyItemRangeChanged(0, db!!.portionDao().findAll().size)
             }
         }
 }
