@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_portions">
+
+    <fragment
+        android:id="@+id/navigation_portions"
+        android:name="kd.microlearn.activities.PortionActivity"
+        android:label="@string/portions"
+        tools:layout="@layout/activity_portion_list" />
+
+    <fragment
+        android:id="@+id/navigation_facts"
+        android:name="kd.microlearn.activities.FactsActivity"
+        android:label="@string/interesting_facts"
+        tools:layout="@layout/activity_facts" />
+
+    <fragment
+        android:id="@+id/navigation_account"
+        android:name="kd.microlearn.activities.AccountActivity"
+        android:label="@string/account"
+        tools:layout="@layout/activity_account" />
+</navigation>

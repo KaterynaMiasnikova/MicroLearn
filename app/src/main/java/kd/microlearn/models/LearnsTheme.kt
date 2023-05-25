@@ -6,9 +6,8 @@ import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-@Entity("areas")
-data class AreaModel(
-    @PrimaryKey(autoGenerate = true)
-    var id_area: Long = 0,
-    var name_area: String = ""
+@Entity("learns_theme", primaryKeys = ["id_user", "id_theme"])
+data class LearnsTheme (
+    var id_user: Long = 0,
+    var id_theme: Long = 0
 ) : Parcelable

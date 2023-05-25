@@ -17,6 +17,7 @@
     <string name="or">or</string>
     <string name="theme_commit_new">Commit new theme</string>
     <string name="favourite_facts">Favourite facts</string>
+    <string name="interesting_facts">Facts</string>
     <string name="studied_topics">Studied topics</string>
     <string name="themes">Themes</string>
     <string name="settings">Settings</string>
@@ -26,4 +27,14 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="other">Other</string>
+    <string name="title_activity_account">AccountActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="image_of_user">Image of user</string>
+    <string name="user_name">User name</string>
+    <string name="thanks_for_studying_with_us">Thanks for studying with us</string>
+    <string name="my_account">My account</string>
+
+
 </resources>

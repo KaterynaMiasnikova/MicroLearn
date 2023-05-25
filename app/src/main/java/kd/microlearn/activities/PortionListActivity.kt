@@ -37,7 +37,7 @@ class PortionListActivity : AppCompatActivity(), PortionListener {
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = PortionAdapter(app.portions.findAll(), this)
+        binding.recyclerView.adapter = PortionAdapter(app.db.portionDao().findAll(), this)
 
         mDrawerLayout = findViewById<View>(R.id.drawer_layout) as DrawerLayout
         mToggle = ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close)
@@ -89,7 +89,7 @@ class PortionListActivity : AppCompatActivity(), PortionListener {
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
                 (binding.recyclerView.adapter)?.
-                notifyItemRangeChanged(0,app.portions.findAll().size)
+                notifyItemRangeChanged(0,app.db.portionDao().findAll().size)
             }
         }
 }

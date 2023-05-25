@@ -28,7 +28,7 @@ class PortionActivity : AppCompatActivity() {
             portion = intent.extras?.getParcelable("portion_show")!!
             binding.portionName.text = getString(R.string.show_underlined, portion.title_portion)
             binding.portionText.text = portion.text_portion
-            binding.toolbarAdd.title = app!!.themes.getById(portion.id_theme).title_theme
+            binding.toolbarAdd.title = app!!.db.themeDao().getById(portion.id_theme).title_theme
         }
     }
 

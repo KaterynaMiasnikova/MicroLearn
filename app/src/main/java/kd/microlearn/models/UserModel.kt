@@ -6,11 +6,12 @@ import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-@Entity("portions")
-data class PortionModel(
+@Entity("users")
+data class UserModel(
     @PrimaryKey(autoGenerate = true)
-    var id_portion: Long = 0,
-    var title_portion: String = "",
-    var text_portion: String = "",
-    var id_theme: Long = 0
+    var id_user: Long = 0,
+    var name_user: String = "",
+    var surname_user: String = "",
+    var email_user: String = "",
+    var password_user: String = ""
 ) : Parcelable
