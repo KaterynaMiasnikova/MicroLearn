@@ -10,7 +10,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 
 
 @Database(
-    entities = [AreaModel::class, UserModel::class, PortionModel::class, ThemeModel::class, LearnsTheme::class, StudiedPortion::class],
+    entities = [AreaModel::class, UserModel::class, PortionModel::class, ThemeModel::class, LearnsTheme::class, StudiedPortion::class, FeedbackModel::class],
     version = 1
 )
 abstract class AppDatabase: RoomDatabase() {
@@ -21,6 +21,7 @@ abstract class AppDatabase: RoomDatabase() {
     abstract fun userDao(): UserStore
     abstract fun learnsThemeDao(): LearnsThemeDao
     abstract fun studiedPortionDao(): StudiedPortionDao
+    abstract fun feedbackDao(): FeedbackStore
 
 
     companion object {

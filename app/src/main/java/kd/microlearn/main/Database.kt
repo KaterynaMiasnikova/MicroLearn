@@ -1,7 +1,7 @@
 package kd.microlearn.main
 
 import android.content.Context
-import androidx.room.Room
+//import androidx.room.Room
 import kd.microlearn.models.AppDatabase
 import kd.microlearn.models.AreaModel
 import kd.microlearn.models.PortionModel
