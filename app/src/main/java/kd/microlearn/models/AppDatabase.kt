@@ -1,12 +1,12 @@
 package kd.microlearn.models
 
 import android.content.Context
-import android.os.AsyncTask
 import androidx.room.Database
 import androidx.room.Room
-import androidx.room.Room.databaseBuilder
 import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 @Database(
@@ -25,19 +25,20 @@ abstract class AppDatabase: RoomDatabase() {
 
 
     companion object {
+        @Volatile
         private var INSTANCE: AppDatabase? = null
 
-        fun getInstance(context: Context): AppDatabase? {
-            if (INSTANCE == null) {
-                synchronized(AppDatabase::class) {
-                    INSTANCE = Room.databaseBuilder(
-                        context.applicationContext,
-                        AppDatabase::class.java, "microlearn.db"
-                    ).allowMainThreadQueries()
+        fun getInstance(context: Context): AppDatabase {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    AppDatabase::class.java, "microlearn.db"
+                )
+                    .fallbackToDestructiveMigration()
                     .build()
-                }
+                INSTANCE = instance
+                instance
             }
-            return INSTANCE
         }
 
         fun destroyInstance() {

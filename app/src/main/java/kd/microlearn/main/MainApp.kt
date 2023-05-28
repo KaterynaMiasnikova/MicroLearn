@@ -1,26 +1,21 @@
 package kd.microlearn.main
 import android.app.Application
-import androidx.room.Room
 import kd.microlearn.models.AppDatabase
 import kd.microlearn.models.AreaModel
 import kd.microlearn.models.PortionModel
 import kd.microlearn.models.ThemeModel
-import timber.log.Timber
-import timber.log.Timber.i
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class MainApp : Application() {
 
-    val db = Room.databaseBuilder (
-        applicationContext,
-        AppDatabase::class.java,
-        "microlearn.db"
-    ).build()
 
     override fun onCreate() {
         super.onCreate()
-        Timber.plant(Timber.DebugTree())
-        i("Placemark started")
+        CoroutineScope(Dispatchers.IO).launch {
+            val db = AppDatabase.getInstance(this@MainApp)
 
         val areaDao = db.areaDao()
         areaDao.create(AreaModel(0, "Geography"))
@@ -59,5 +54,6 @@ class MainApp : Application() {
             "Arsenalna is a station on Kyiv Metro’s Sviatoshynsko-Brovarska Line. The station was opened along with the first stage and is currently the deepest station in the world at 105.5 metres. This is attributed to Kyiv’s geography, where the high bank of the Dnipro River rises above the rest of the city. Also unusual is the station’s design, which lacks a central concourse and is thus similar in layout to stations on the London Underground.\nSince 1986, the station has the status of \"architectural monument of local significance\".",
             6))
 
+    }
     }
 }

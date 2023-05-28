@@ -16,7 +16,6 @@ import kd.microlearn.R
 import kd.microlearn.adapters.PortionAdapter
 import kd.microlearn.adapters.PortionListener
 import kd.microlearn.databinding.ActivityPortionListBinding
-import kd.microlearn.main.Database
 import kd.microlearn.main.MainApp
 import kd.microlearn.models.AppDatabase
 import kd.microlearn.models.PortionModel
@@ -40,7 +39,11 @@ class PortionListActivity : AppCompatActivity(), PortionListener {
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = PortionAdapter(db!!.portionDao().findAll(), this)
+
+        // Initialize db variable here
+        val db = AppDatabase.getInstance(applicationContext)
+
+        binding.recyclerView.adapter = PortionAdapter(db.portionDao().findAll(), this)
 
         mDrawerLayout = findViewById<View>(R.id.drawer_layout) as DrawerLayout
         mToggle = ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close)
@@ -53,11 +56,9 @@ class PortionListActivity : AppCompatActivity(), PortionListener {
         val fab = findViewById<View>(R.id.addTheme) as FloatingActionButton
         fab.setOnClickListener { view ->
             val launcherIntent = Intent(this, ThemeActivity::class.java)
-            //launcherIntent.putExtra("theme_show", portion)
             getClickResult.launch(launcherIntent)
         }
     }
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
