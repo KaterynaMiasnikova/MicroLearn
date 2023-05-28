@@ -1,6 +1,96 @@
-//package kd.microlearn.models
-//
-//import edu.stanford.nlp.pipeline.CoreDocument
+package kd.microlearn.models
+import org.apache.commons.text.similarity.CosineDistance
+import java.io.BufferedReader
+import java.io.InputStreamReader
+
+
+class ModuleAI {
+    private val MAX_PORTION_LENGTH = 200
+    private val MIN_SIMILARITY_THRESHOLD = 0.8
+
+    // Function to generate material and divide it into portions
+    fun generateMaterial(data: String): List<String> {
+        val portions = mutableListOf<String>()
+        val sentences = segmentSentences(data)
+
+        var currentPortion = ""
+        for (sentence in sentences) {
+            val updatedPortion = if (currentPortion.isNotEmpty()) "$currentPortion $sentence" else sentence
+
+            if (updatedPortion.length <= MAX_PORTION_LENGTH && checkSimilarity(currentPortion, sentence)) {
+                currentPortion = updatedPortion
+            } else {
+                portions.add(currentPortion)
+                currentPortion = sentence
+            }
+        }
+
+        if (currentPortion.isNotEmpty()) {
+            portions.add(currentPortion)
+        }
+
+        return portions
+    }
+
+    private fun segmentSentences(text: String): List<String> {
+        // Dummy implementation for demonstration purposes
+        return text.split('.').map { it.trim() }.filter { it.isNotEmpty() }
+    }
+
+    private fun checkSimilarity(portion: String, sentence: String): Boolean {
+        val distance = CosineDistance()
+        return distance.apply(portion, sentence) >= MIN_SIMILARITY_THRESHOLD
+    }
+
+    // Function to regenerate material based on feedback
+    fun regenerateMaterial(feedback: String, portion: String): String {
+        return when (feedback) {
+            "Sentences are not logically connected enough" -> rewriteForLogicalConnection(portion)
+            "Too short portion" -> rewriteForLength(portion)
+            else -> portion // No changes needed for "Good quality of material"
+        }
+    }
+
+    private fun paraphrase(sentence: String): String {
+        val process = Runtime.getRuntime().exec("python paraphraser.py")
+
+        val writer = process.outputStream.bufferedWriter()
+        writer.write(sentence)
+        writer.newLine()
+        writer.flush()
+        writer.close()
+
+        val reader = BufferedReader(InputStreamReader(process.inputStream))
+        val paraphrasedSentence = reader.readLine()
+        reader.close()
+
+        return paraphrasedSentence
+    }
+
+    // AI algorithm for rewriting material based on logical connection
+    private fun rewriteForLogicalConnection(portion: String): String {
+        val sentences = segmentSentences(portion)
+        val rewrittenSentences = mutableListOf<String>()
+
+        for (sentence in sentences) {
+            val paraphrasedSentence = paraphrase(sentence)
+            rewrittenSentences.add(paraphrasedSentence)
+        }
+
+        return rewrittenSentences.joinToString(" ")
+    }
+
+    // AI algorithm for rewriting material based on portion length
+    private fun rewriteForLength(portion: String): String {
+        val nextPortion = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vestibulum tortor quis erat posuere, sit amet auctor leo aliquam. Sed vel augue lacus. Morbi vel dolor tellus. In hac habitasse platea dictumst. Fusce fringilla sem a massa tempor, ut sagittis ex faucibus. Integer tristique pellentesque varius. Maecenas non nulla nec mauris semper ultricies ac et odio. Sed malesuada, turpis ac pellentesque aliquet, libero nulla consequat nibh, eu vulputate sapien massa in odio. Proin efficitur, leo nec suscipit rutrum, ipsum mauris fringilla nisl, sit amet hendrerit leo dui in tellus."
+
+        return "$portion $nextPortion"
+    }
+
+
+}
+
+
 //import edu.stanford.nlp.pipeline.StanfordCoreNLP
 //import org.apache.commons.text.similarity.CosineSimilarity
 //
@@ -14,10 +104,9 @@
 //        pipeline = StanfordCoreNLP(properties)
 //    }
 //
-//    fun processData(data: String): List<String> {
+//    fun generateMaterial(data: String): List<String> {
 //        val annotation = annotateText(data)
 //        val sentences = extractSentences(annotation)
-//        val orderedPortions = database.portionDao().getAll().map { it.portion }
 //
 //        val regeneratedMaterial = generateLogicalMaterial(orderedPortions, sentences)
 //
