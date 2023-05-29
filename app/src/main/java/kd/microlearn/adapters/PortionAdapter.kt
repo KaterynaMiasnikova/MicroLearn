@@ -2,10 +2,9 @@ package kd.microlearn.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
 import kd.microlearn.databinding.CardPortionBinding
-import kd.microlearn.models.PortionModel
+import kd.microlearn.models.entities.PortionModel
 
 
 interface PortionListener {

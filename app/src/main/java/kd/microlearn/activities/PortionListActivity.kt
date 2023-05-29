@@ -17,7 +17,7 @@ import kd.microlearn.adapters.PortionAdapter
 import kd.microlearn.adapters.PortionListener
 import kd.microlearn.databinding.ActivityPortionListBinding
 import kd.microlearn.main.MainApp
-import kd.microlearn.models.PortionModel
+import kd.microlearn.models.entities.PortionModel
 
 
 class PortionListActivity : AppCompatActivity(), PortionListener {

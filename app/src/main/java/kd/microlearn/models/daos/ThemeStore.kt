@@ -1,14 +1,15 @@
-package kd.microlearn.models
+package kd.microlearn.models.daos
 
 import androidx.room.*
+import kd.microlearn.models.entities.ThemeModel
 
 @Dao
 interface ThemeStore {
 
     @Query("SELECT * FROM themes ORDER BY id_theme ASC")
     fun findAll(): List<ThemeModel>
-    @Insert
-    fun create(theme: ThemeModel)
+    @Upsert
+    fun upsert(theme: ThemeModel)
     @Query("SELECT title_theme FROM themes")
     fun getThemesNames(): List<String>
     @Query("SELECT title_theme FROM themes WHERE id_area = (:id_area)")

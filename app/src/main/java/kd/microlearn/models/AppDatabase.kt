@@ -1,16 +1,22 @@
 package kd.microlearn.models
 
 import android.content.Context
-import android.os.AsyncTask
 import androidx.room.Database
 import androidx.room.Room
-import androidx.room.Room.databaseBuilder
 import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
-
+import kd.microlearn.models.daos.*
+import kd.microlearn.models.entities.*
 
 @Database(
-    entities = [AreaModel::class, UserModel::class, PortionModel::class, ThemeModel::class, LearnsTheme::class, StudiedPortion::class],
+    entities = [AreaModel::class,
+        UserModel::class,
+        PortionModel::class,
+        ThemeModel::class,
+        FeedbackModel::class,
+        FactModel::class,
+        LikedFactModel::class,
+        LearnsThemeModel::class,
+        StudiedPortionModel::class],
     version = 1
 )
 abstract class AppDatabase: RoomDatabase() {
@@ -19,8 +25,11 @@ abstract class AppDatabase: RoomDatabase() {
     abstract fun themeDao(): ThemeStore
     abstract fun areaDao(): AreaStore
     abstract fun userDao(): UserStore
-    abstract fun learnsThemeDao(): LearnsThemeDao
-    abstract fun studiedPortionDao(): StudiedPortionDao
+    abstract fun factDao(): FactStore
+    abstract fun feedbackDao(): FeedbackStore
+    abstract fun likedFactDao(): LikedFactStore
+    abstract fun learnsThemeDao(): LearnsThemeStore
+    abstract fun studiedPortionDao(): StudiedPortionStore
 
     companion object {
         private var INSTANCE: AppDatabase? = null

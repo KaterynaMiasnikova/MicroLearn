@@ -1,4 +1,4 @@
-package kd.microlearn.models
+package kd.microlearn.models.entities
 
 import android.os.Parcelable
 import androidx.room.Entity
@@ -12,5 +12,6 @@ data class PortionModel(
     var id_portion: Long = 0,
     var title_portion: String = "",
     var text_portion: String = "",
-    var id_theme: Long = 0
+    var id_theme: Long = 0,
+    var id_in_theme: Long = 0
 ) : Parcelable

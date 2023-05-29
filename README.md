@@ -4,6 +4,6 @@
 >"Microlearning" is a well-established term that represents learning a small amount of material in a short period of time. Most often, the term is used in electronic learning formats. Microlearning as an approach is the concept of absorbing any knowledge in small units.
 >So, the idea of the application is that the user subscribes to a topic (one or more), and every day receives one unread "portion" from each topic to which he is subscribed. The user will also be able to customize the profile (edit the list of topics, change the name and profile photo).
 
-Version 0.4
+Version 0.5
 
-Added sidebar navigation drawer
+Database SQLite connected 

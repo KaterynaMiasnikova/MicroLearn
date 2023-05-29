@@ -7,7 +7,7 @@ import android.view.MenuItem
 import kd.microlearn.R
 import kd.microlearn.databinding.ActivityPortionBinding
 import kd.microlearn.main.MainApp
-import kd.microlearn.models.PortionModel
+import kd.microlearn.models.entities.PortionModel
 import timber.log.Timber.i
 
 class PortionActivity : AppCompatActivity() {

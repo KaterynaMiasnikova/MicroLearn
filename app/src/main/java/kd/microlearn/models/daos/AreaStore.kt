@@ -1,15 +1,16 @@
-package kd.microlearn.models
+package kd.microlearn.models.daos
 
 import androidx.room.Dao
-import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Upsert
+import kd.microlearn.models.entities.AreaModel
 
 @Dao
 interface AreaStore {
+    @Upsert
+    fun upsert(area: AreaModel)
     @Query("SELECT * FROM areas ORDER BY id_area ASC")
     fun findAll(): List<AreaModel>
-    @Insert
-    fun create(area: AreaModel)
     @Query("SELECT * FROM areas WHERE id_area = (:id)")
     fun getById(id: Long): AreaModel
     @Query("SELECT name_area FROM areas")

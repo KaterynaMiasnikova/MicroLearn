@@ -1,4 +1,4 @@
-package kd.microlearn.models
+package kd.microlearn.models.entities
 
 import android.os.Parcelable
 import androidx.room.Entity

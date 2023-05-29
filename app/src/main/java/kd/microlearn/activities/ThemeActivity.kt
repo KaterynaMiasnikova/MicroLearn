@@ -13,7 +13,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kd.microlearn.R
 import kd.microlearn.databinding.ActivityThemeBinding
 import kd.microlearn.main.MainApp
-import kd.microlearn.models.ThemeModel
+import kd.microlearn.models.entities.ThemeModel
 import timber.log.Timber
 
 class ThemeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
