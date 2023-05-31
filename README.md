@@ -6,4 +6,4 @@
 
 Version 0.5
 
-Database SQLite connected 
+Database SQLite connected
